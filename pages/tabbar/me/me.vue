@@ -1,22 +1,19 @@
 <template>
-	<view class="content">页面 - 提问</view>
+	<view class="content">我的</view>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			type: 'free'
+			title: 'Hello'
 		};
 	},
-	onLoad(option) {
-		this.type = option.type;
-	},
+	onLoad() {},
 	onShow() {
-		uni.showToast({
-			title: this.type
-		});
-	}
+		uni.setStorageSync('createFrom', 'me');
+	},
+	methods: {}
 };
 </script>
 

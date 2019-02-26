@@ -1,19 +1,18 @@
 <template>
-	<view class="content">首页</view>
+	<view class="content">页面 - {{ type }}</view>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			title: 'Hello'
+			type: 'free'
 		};
 	},
-	onLoad() {},
-	onShow() {
-		uni.setStorageSync('createFrom', 'index');
+	onLoad(option) {
+		this.type = option.type;
 	},
-	methods: {}
+	onShow() {}
 };
 </script>
 

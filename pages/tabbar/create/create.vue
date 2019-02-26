@@ -1,24 +1,47 @@
 <template>
-	<view class="content" :class="{'active':active}">
-		<image class="logo" :class="{'active':active}" src="../../../static/img/video.png"  mode="aspectFit"></image>
-		<view class="tabbar-box-wrap">
+	<view class="content" @click="handleClose" :class="{ active: active }">
+		<image
+			class="logo"
+			:class="{ active: active }"
+			src="../../../static/img/video.png"
+			mode="aspectFit"
+		></image>
+		<view class="tabbar-box-wrap" :class="{ active: active }">
 			<view class="tabbar-box">
-				<view class="tabbar-box-item" @click="goToPage('/pages/create?type=free')">
-					<image class="box-image" src="../../../static/img/release.png" mode="aspectFit"></image>
+				<view
+					class="tabbar-box-item"
+					@click="goToPage('/pages/create/create?type=free')"
+				>
+					<image
+						class="box-image"
+						src="../../../static/img/qa.png"
+						mode="aspectFit"
+					></image>
 					<text class="explain">免费相册</text>
 				</view>
-				<view class="tabbar-box-item" @click="goToPage('/pages/create?type=profesional')">
-					<image class="box-image" src="../../../static/img/video.png" mode="aspectFit"></image>
+				<view
+					class="tabbar-box-item"
+					@click="goToPage('/pages/create/create?type=profesional')"
+				>
+					<image
+						class="box-image"
+						src="../../../static/img/video.png"
+						mode="aspectFit"
+					></image>
 					<text class="explain">专业相册</text>
 				</view>
-				<view class="tabbar-box-item" @click="goToPage('/pages/create?type=article')">
-					<image class="box-image" src="../../../static/img/qa.png" mode="aspectFit"></image>
+				<view class="tabbar-box-item" @click="goToPage('/pages/create/create?type=article')">
+					<image
+						class="box-image"
+						src="../../../static/img/release.png"
+						mode="aspectFit"
+					></image>
 					<text class="explain">图文直播</text>
 				</view>
 			</view>
 		</view>
 	</view>
-</template> 
+</template>
 
 <script>
 export default {
@@ -29,14 +52,29 @@ export default {
 	},
 	onLoad() {},
 	onShow() {
-		// setTimeout(() => {
-		this.active = true;
-		// }, 500);
+		setTimeout(() => {
+			this.active = true;
+		}, 10);
 	},
 	onHide() {
 		this.active = false;
 	},
+	onBackPress(options) {
+		if (options.from == 'backbutton') {
+			this.goBack();
+		}
+		return true;
+	},
 	methods: {
+		handleClose() {
+			this.goBack();
+		},
+		goBack() {
+			let from = uni.getStorageSync('createFrom');
+			uni.switchTab({
+				url: `/pages/tabbar/${from}/${from}`
+			});
+		},
 		goToPage(url) {
 			if (!url) return;
 			uni.navigateTo({
@@ -74,7 +112,7 @@ export default {
 		opacity: 0;
 		transition: opacity 0.3s;
 		&.active {
-			opacity: .5;
+			opacity: 0.2;
 		}
 	}
 }
@@ -83,8 +121,12 @@ export default {
 	width: 100%;
 	padding: 50upx;
 	box-sizing: border-box;
-	bottom: 0;
+	bottom: -300upx;
 	left: 0;
+	transition: bottom 0.3s;
+	&.active {
+		bottom: 0upx;
+	}
 	.tabbar-box {
 		position: relative;
 		display: flex;

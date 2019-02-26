@@ -8,52 +8,52 @@
 			"path": "pages/tabbar/create/create"
 		},
 		{
-			"path": "pages/tabbar/my/my"
+			"path": "pages/tabbar/me/me"
 		},
 		{
-			"path": "pages/create",
+			"path": "pages/create/create",
 			"style": {
-				"navigationBarTitleText":"创建相册"
+				"navigationBarTitleText":"新建"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationStyle": "default",
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "一拍即传",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"navigationBarBackgroundColor": "#444972",
+		"backgroundColor": "#444972"
 	},
 	"tabBar": {
-		"borderStyle": "black",
-		"backgroundColor": "#333",
-		"color": "#8F8F94",
-		"selectedColor": "#f33e54",
+		"borderStyle": "white",
+		"backgroundColor": "#ececec",
+		"color": "#999999",
+		"selectedColor": "#444972",
 		"list": [{
 				"pagePath": "pages/tabbar/index/index",
-				"iconPath": "static/img/tabbar/home.png",
-				"selectedIconPath": "static/img/tabbar/homeactive.png",
+				"iconPath": "static/images/home/index.png",
+				"selectedIconPath": "static/images/home/index_choosed.png",
 				"text": "首页"
 			},
 			//#ifdef MP-WEIXIN
 			{
 				"pagePath": "pages/tabbar/create/create",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png",
+				"iconPath": "static/img/tabbar/add_1.png",
+				"selectedIconPath": "static/img/tabbar/add_1.png",
 				"text": "创建"
 			},
 			//#endif
 			//#ifndef MP-WEIXIN
 			{
 				"pagePath": "pages/tabbar/create/create",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png"
+				"iconPath": "static/img/tabbar/add_1.png",
+				"selectedIconPath": "static/img/tabbar/add_1.png"
 			},
 			//#endif
 			{
-				"pagePath": "pages/tabbar/my/my",
-				"iconPath": "static/img/tabbar/me.png",
-				"selectedIconPath": "static/img/tabbar/meactive.png",
+				"pagePath": "pages/tabbar/me/me",
+				"iconPath": "static/images/home/person_center.png",
+				"selectedIconPath": "static/images/home/person_center_choosed.png",
 				"text": "我的"
 			}
 		]

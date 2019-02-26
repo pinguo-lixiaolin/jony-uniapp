@@ -41,6 +41,12 @@
             "ios" : {},
             /* ios打包配置 */
             "sdkConfigs" : {}
+        },
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : false,
+            "waiting" : false,
+            "autoclose" : true,
+            "delay" : 0
         }
     },
     /* SDK配置 */
@@ -48,9 +54,9 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "",
+        "appid" : "wx037cf4991c33a506",
         "setting" : {
-            "urlCheck" : true
+            "urlCheck" : false
         }
     }
 }

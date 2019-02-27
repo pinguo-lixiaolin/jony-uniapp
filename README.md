@@ -1,6 +1,6 @@
 # jony-uniapp
 
-## 一拍即传测试项目
+## 一拍即传测试APP
 
 ### 参考资料
 [参考微信接入](https://github.com/leancloud/leantodo-weapp)

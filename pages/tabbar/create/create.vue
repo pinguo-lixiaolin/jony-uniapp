@@ -5,37 +5,29 @@
 			:class="{ active: active }"
 			src="../../../static/img/video.png"
 			mode="aspectFit"
-		></image>
+		/>
 		<view class="tabbar-box-wrap" :class="{ active: active }">
 			<view class="tabbar-box">
-				<view
-					class="tabbar-box-item"
-					@click="goToPage('/pages/create/create?type=free')"
-				>
-					<image
-						class="box-image"
-						src="../../../static/img/qa.png"
-						mode="aspectFit"
-					></image>
+				<view class="tabbar-box-item" @click="goToPage('/pages/create/create?type=free')">
+					<image class="box-image" src="../../../static/img/qa.png" mode="aspectFit" />
 					<text class="explain">免费相册</text>
 				</view>
 				<view
 					class="tabbar-box-item"
 					@click="goToPage('/pages/create/create?type=profesional')"
 				>
-					<image
-						class="box-image"
-						src="../../../static/img/video.png"
-						mode="aspectFit"
-					></image>
+					<image class="box-image" src="../../../static/img/video.png" mode="aspectFit" />
 					<text class="explain">专业相册</text>
 				</view>
-				<view class="tabbar-box-item" @click="goToPage('/pages/create/create?type=article')">
+				<view
+					class="tabbar-box-item"
+					@click="goToPage('/pages/create/create?type=article')"
+				>
 					<image
 						class="box-image"
 						src="../../../static/img/release.png"
 						mode="aspectFit"
-					></image>
+					/>
 					<text class="explain">图文直播</text>
 				</view>
 			</view>

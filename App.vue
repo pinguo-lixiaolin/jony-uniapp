@@ -2,16 +2,20 @@
 export default {
 	onLaunch: function() {
 		console.log('App Launch');
-
-// 		setTimeout(() => {
-// 			uni.setTabBarBadge({
-// 				index: 1,
-// 				text: '31'
-// 			});
-// 			uni.showTabBarRedDot({
-// 				index: 3
-// 			});
-// 		}, 1000);
+		console.log('App Launch');
+		this.$AV.init({
+			appId: 'uaN8nyxBz8xtLA6JSpvTfC9i-gzGzoHsz',
+			appKey: 'BqoFgiHabN0lhlvwJyFmBnjP'
+		});
+		// 		setTimeout(() => {
+		// 			uni.setTabBarBadge({
+		// 				index: 1,
+		// 				text: '31'
+		// 			});
+		// 			uni.showTabBarRedDot({
+		// 				index: 3
+		// 			});
+		// 		}, 1000);
 	},
 	onShow: function() {
 		console.log('App Show');
@@ -23,5 +27,5 @@ export default {
 </script>
 
 <style>
-/*每个页面公共css */ 
+/*每个页面公共css */
 </style>

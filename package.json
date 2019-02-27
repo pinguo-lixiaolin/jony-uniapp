@@ -1,0 +1,19 @@
+
+{
+  "name": "jony-uniapp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "lixiaolin <lixiaolin@camera360.com>",
+  "license": "ISC",
+  "dependencies": {
+    "leancloud-storage": "^3.11.1",
+    "lodash": "^4.17.11",
+    "qs": "^6.6.0",
+    "uuid": "^3.3.2"
+  }
+}

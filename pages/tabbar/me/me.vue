@@ -9,10 +9,10 @@ export default {
 			title: 'Hello'
 		};
 	},
-	onLoad() {},
-	onShow() {
+	onLoad() {
 		uni.setStorageSync('createFrom', 'me');
 	},
+	onShow() {},
 	methods: {}
 };
 </script>

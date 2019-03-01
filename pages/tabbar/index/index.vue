@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image @click="showArgs" class="logo" src="../../static/logo.png"></image>
+		<image @click="showArgs" class="logo" src="../../../static/logo.png"></image>
 		<view>
 			<text class="title" @click="showToast">{{ title }}</text>
 		</view>
@@ -14,7 +14,9 @@ export default {
 			title: 'Hello Word'
 		};
 	},
-	onLoad() {},
+	onLoad() {
+		uni.setStorageSync('createFrom', 'index');
+	},
 	onShow() {},
 	methods: {
 		showArgs() {

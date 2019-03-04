@@ -2,7 +2,6 @@
 export default {
 	onLaunch: function() {
 		console.log('App Launch');
-		console.log('App Launch');
 		this.$AV.init({
 			appId: 'uaN8nyxBz8xtLA6JSpvTfC9i-gzGzoHsz',
 			appKey: 'BqoFgiHabN0lhlvwJyFmBnjP'

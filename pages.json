@@ -8,7 +8,10 @@
 			"path": "pages/tabbar/create/create"
 		},
 		{
-			"path": "pages/tabbar/me/me"
+			"path": "pages/tabbar/me/me",
+			"style": {
+				"navigationBarTitleText":"我的"
+			}
 		},
 		{
 			"path": "pages/create/create",

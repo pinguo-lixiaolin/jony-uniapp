@@ -11,13 +11,15 @@
 export default {
 	data() {
 		return {
-			title: 'Hello Word'
+			title: '一拍即传'
 		};
 	},
 	onLoad() {
+		
+	},
+	onShow() {
 		uni.setStorageSync('createFrom', 'index');
 	},
-	onShow() {},
 	methods: {
 		showArgs() {
 			plus.nativeUI.alert(JSON.stringify(plus.runtime.arguments));

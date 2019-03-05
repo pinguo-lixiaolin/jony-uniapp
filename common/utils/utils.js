@@ -1,6 +1,5 @@
-// #ifdef APP-PLUS
-const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
-// #endif
+// const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
+
 export default {
 	showConfirmModal(params) {
 		let {
@@ -12,7 +11,9 @@ export default {
 			confirmColor,
 			onOk
 		} = params;
-		// #ifdef MP-WEIXIN
+
+		confirmColor = confirmColor || "#EC3955"
+
 		wx.showModal({
 			title,
 			content,
@@ -24,9 +25,8 @@ export default {
 				}
 			}
 		})
-		// #endif
-		// #ifdef APP-PLUS
-		dcRichAlert.show({
+
+		/*dcRichAlert.show({
 				position: 'center',
 				title,
 				titleColor,
@@ -50,7 +50,7 @@ export default {
 						break;
 				}
 			}
-		);
-		// #endif
+		); */
+
 	}
 }

@@ -22,6 +22,9 @@ export default {
 				confirmColor: '#EC3955',
 				onOk() {
 					console.log('退出');
+					uni.redirectTo({
+						url: '/pages/user/login'
+					});
 				}
 			});
 		}

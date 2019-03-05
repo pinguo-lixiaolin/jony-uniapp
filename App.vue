@@ -6,6 +6,12 @@ export default {
 			appId: 'uaN8nyxBz8xtLA6JSpvTfC9i-gzGzoHsz',
 			appKey: 'BqoFgiHabN0lhlvwJyFmBnjP'
 		});
+		this.$gio('init', '87a8f5f5eb47acfc', 'wx037cf4991c33a506', {
+			version: '2.3.0',
+			getLocation: true,
+			followShare: true,
+			debug: false
+		});
 		// 		setTimeout(() => {
 		// 			uni.setTabBarBadge({
 		// 				index: 1,

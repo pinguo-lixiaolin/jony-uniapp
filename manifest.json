@@ -1,6 +1,6 @@
 {
     "name" : "jony-uniapp",
-    "appid" : "__UNI__54FA04A",
+    "appid" : "__UNI__A62B617",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -47,6 +47,11 @@
             "waiting" : false,
             "autoclose" : true,
             "delay" : 0
+        },
+        "softinput" : {
+            "navBar" : "none", // 是否显示软键盘上的导航条  
+            "auxiliary" : false, // 是否开启辅助输入功能  
+            "mode" : "adjustResize" // 软键盘弹出模式  
         }
     },
     /* SDK配置 */

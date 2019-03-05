@@ -76,13 +76,7 @@
 				this.codeInputing = false;
 			},
 			handleChangePhone(e) {
-				this.mobile = Validation.checkStrLength(
-					Validation.beMobile(e.detail.value),
-					11,
-					true,
-					true
-				);
-				return this.mobile;
+				this.mobile = e.target.value
 			},
 			handleGetCode() {},
 			handleContact() {
@@ -98,7 +92,7 @@
 				});
 			},
 			handleChangeCode(e) {
-				this.code = e.detail.value;
+				this.code = e.target.value;
 			},
 			handleLogin() {
 

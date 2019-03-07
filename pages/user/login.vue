@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="info-wrapper">
-			<image class="welcome-pic" src="../../static/images/login/welcome.png" mode="aspectFit" />
+			<image class="welcome-pic" src="/static/images/login/welcome.png" mode="aspectFit" />
 			<text class="subtitle">活 动 现 场 摄 影，就 用 ⌈ 一 拍 即 传 ⌋</text>
 			<view class="login-choose-outview">
 				<text :class="{ 'pink-bottom': loginType }" @tap.stop="changeLoginType(1)">验证码登录</text>
@@ -10,13 +10,13 @@
 			<view class="input-wrapper" :hidden="!loginType">
 				<!-- 电话 -->
 				<view class="item-wrapper">
-					<image class="login-phone-icon input-icon" src="../../static/images/login/phone.png" mode="aspectFit" />
+					<image class="login-phone-icon input-icon" src="/static/images/login/phone.png" mode="aspectFit" />
 					<input class="input-value" placeholder-class="placeholder" placeholder="请输入手机号" type="number" cursor-spacing="50"
 					 @focus="handleInputing('phone')" :value="mobile" maxlength="11" @blur="handleBlur" @input="handleChangePhone" />
 				</view>
 				<!-- 验证码 -->
 				<view class="item-wrapper margin-b-none">
-					<image class="login-captch-icon input-icon" src="../../static/images/login/captch.png" mode="aspectFit" />
+					<image class="login-captch-icon input-icon" src="/static/images/login/captch.png" mode="aspectFit" />
 					<input :type="passwordInpType" class="input-value code-input" placeholder-class="placeholder" placeholder="请输入验证码"
 					 cursor-spacing="50" :focus="codeInputing" maxlength="4" @focus="handleInputing('code')" @blur="handleBlur" @input="handleChangeCode" />
 					<view class="code-btn" type="default" @tap="handleGetCode" hover-class="hover-btn" hover-stay-time="50">
@@ -25,6 +25,26 @@
 				</view>
 				<view class="code-tips" @tap="handleContact" hover-class="hover-btn" hover-stay-time="50">
 					收不到验证码？
+				</view>
+			</view>
+			<view class="psw-login-outview" :hidden="loginType">
+				<view class="item-wrapper">
+					<image class="login-phone-icon input-icon" src="/static/images/login/phone.png" mode="aspectFit" />
+					<input class="input-value" placeholder-class="placeholder" placeholder="请输入手机号" type="number" cursor-spacing="50"
+					 @focus="handleInputing('phone')" maxlength="11" @blur="handleBlur" :value="mobile" @input="handleChangePhone" />
+				</view>
+				<view class="item-wrapper margin-b-none">
+					<image class="login-phone-icon input-icon" src="/static/images/login/login_lock.png" mode="aspectFit" />
+					<input class="input-value" placeholder-class="placeholder" placeholder="请输入密码" type="password" cursor-spacing="50"
+					 @focus="handleInputing('psw')" maxlength="50" @blur="handleBlur" :value="psw" @input="handleChangePsw" />
+				</view>
+				<view class="more-choose-outview">
+					<view class="remenber-psw" @tap="shouldRemenberPsw">
+						<image v-if="rememberPsw" class="login-re-psw-icon" src="/static/images/login/re_psw.png" mode="aspectFit" />
+						<image v-else class="login-re-psw-icon" src="/static/images/login/no_re_psw.png" mode="aspectFit" />
+						<text>记住密码</text>
+					</view>
+					<text class="forget-psw" @tap="forgetPsw">忘记密码</text>
 				</view>
 			</view>
 			<!-- 登录 -->
@@ -63,6 +83,17 @@
 		computed: {
 			...mapState(['forcedLogin', 'userName'])
 		},
+
+		onUnload() {
+			clearInterval(this.codeTimer);
+			this.codeText = '获取';
+			this.codeLoading = false;
+		},
+		onHide() {
+			clearInterval(this.codeTimer);
+			this.codeText = '获取';
+			this.codeLoading = false;
+		},
 		methods: {
 			...mapMutations(['login']),
 			changeLoginType(type) {
@@ -78,7 +109,29 @@
 			handleChangePhone(e) {
 				this.mobile = e.target.value
 			},
-			handleGetCode() {},
+			handleChangePsw(e) {
+				this.psw = e.target.value
+			},
+			shouldRemenberPsw() {
+				this.rememberPsw = !this.rememberPsw
+			},
+			forgetPsw() {
+
+			},
+			handleGetCode() {
+				if (this.codeLoading) return false;
+				if (!Validation.checkPhone(this.mobile)) {
+					uni.showToast({
+						title: "请输入正确的手机号",
+						icon: "none"
+					});
+					return;
+				}
+				this.codeLoading = true;
+				uni.showLoading({
+					title: "获取中..."
+				})
+			},
 			handleContact() {
 				this.$Utils.showConfirmModal({
 					title: '收不到验证码请联系客服',
@@ -127,6 +180,8 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		width: 100%;
+		overflow: hidden;
 
 		.info-wrapper {
 			display: flex;

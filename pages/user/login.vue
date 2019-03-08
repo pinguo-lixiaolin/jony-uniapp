@@ -94,6 +94,7 @@
 			this.codeText = '获取';
 			this.codeLoading = false;
 		},
+		onShow() {},
 		methods: {
 			...mapMutations(['login']),
 			changeLoginType(type) {
@@ -130,6 +131,11 @@
 				this.codeLoading = true;
 				uni.showLoading({
 					title: "获取中..."
+				})
+				this.$userService.sendCodes(this.mobile).then(res => {
+					console.log(JSON.stringify(res));
+				}).finally(() => {
+					uni.hideLoading();
 				})
 			},
 			handleContact() {

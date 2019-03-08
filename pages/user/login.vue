@@ -65,7 +65,7 @@
 	import {
 		WepyService
 	} from "../../services/WepyService";
-	
+
 	export default {
 		data() {
 			return {
@@ -87,7 +87,32 @@
 		computed: {
 			...mapState(['forcedLogin', 'userName'])
 		},
+		onLoad() {
+			let keyStr = ''
+			if (this.$userService.isDev()) {
+				keyStr = 'dev_'
+			}
 
+			this.mobile = WepyService.getStorageSync(keyStr + 'mobile')
+			this.loginType = WepyService.getStorageSync(keyStr + 'loginType') == '0' ? 0 : 1
+
+			let rememberPsw = WepyService.getStorageSync(keyStr + 'rememberPsw')
+			if (rememberPsw == '1') {
+				this.rememberPsw = true
+				this.psw = WepyService.getStorageSync(keyStr + 'psw') || ''
+			}
+		},
+		onShow() {
+			WepyService.getSystemInfo().then((res) => {
+				let system = res.system.toLocaleLowerCase()
+				if (system.indexOf('ios') != -1) {
+					this.passwordInpType = 'text';
+				}
+			})
+			this.$Utils.onRoute.call(this, () => {
+				console.log("onRoute");
+			});
+		},
 		onUnload() {
 			clearInterval(this.codeTimer);
 			this.codeText = '获取';
@@ -98,7 +123,6 @@
 			this.codeText = '获取';
 			this.codeLoading = false;
 		},
-		onShow() {},
 		methods: {
 			...mapMutations(['login']),
 			changeLoginType(type) {
@@ -124,35 +148,63 @@
 
 			},
 			handleGetCode() {
-				if (this.codeLoading) return false;
-				if (!Validation.checkPhone(this.mobile)) {
-					uni.showToast({
-						title: "请输入正确的手机号",
-						icon: "none"
-					});
+				if (this.codeLoading)
 					return;
-				}
+				if (!Validation.checkPhone(this.mobile))
+					return WepyService.showToast('请输入正确的手机号');
 				this.codeLoading = true;
-				uni.showLoading({
-					title: "获取中..."
-				})
-				this.$userService.sendCodes(this.mobile).then(res => {
-					console.log(JSON.stringify(res));
-				}).finally(() => {
-					uni.hideLoading();
-				})
+				WepyService.showLoading("获取中...");
+				this.$userService.sendCodes(this.mobile, 2).then(res => {
+					this.codeText = 59;
+					this.codeInputing = true;
+					this.codeTimer = setInterval(() => {
+						this.codeText--;
+						this.hasSended = true;
+						if (this.codeText === 0) {
+							clearInterval(this.codeTimer);
+							this.codeText = '获取';
+							this.codeLoading = false;
+						}
+					}, 1000)
+				}).catch(error => {
+					this.codeText = '获取';
+					this.codeLoading = false;
+					WepyService.hideLoading()
+					if (error.statusCode == 200) {
+						if (error.data.status == 10056) {
+							WepyService.showConfirmModal({
+								title: '',
+								content: error.data.message,
+								confirmText: '注册'
+							}).then((res) => {
+								if (res.confirm) {
+									Navigate.goTo({
+										url: '/pages/login/identCode/IdentCode',
+									})
+								}
+							})
+							return
+						} else {
+							WepyService.showConfirmModal({
+								title: '',
+								content: error.data.message
+							})
+							return
+						}
+					}
+					WepyService.showReqErrorModal();
+				}).finally(() => WepyService.hideLoading());
 			},
 			handleContact() {
-				this.$Utils.showConfirmModal({
+				WepyService.showConfirmModal({
 					title: '收不到验证码请联系客服',
-					content: '客服电话：18011512439?',
-					confirmText: '拨打',
-					onOk() {
-						uni.makePhoneCall({
-							phoneNumber: '18011512439'
-						});
+					content: '客服电话：18011512439',
+					confirmText: '拨打'
+				}).then((res) => {
+					if (res.confirm) {
+						WepyService.makePhoneCall('18011512439')
 					}
-				});
+				})
 			},
 			handleChangeCode(e) {
 				this.code = e.target.value;

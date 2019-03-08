@@ -7,6 +7,7 @@
 
 import { NetworkBaseInterface, NetworkBase } from './NetworkBase';
 import { NetworkConfig, InterfaceConfig } from '../common/Config';
+import { DialogModel, DialogInterface } from '../model/DialogModel';
 /**
  * 微信登录接口
  * 继承基础接口，保留了基础接口的请求网络功能
@@ -191,7 +192,7 @@ interface WepyServiceInterface extends NetworkBaseInterface {
      * @param params
      * @returns Promise对象
      */
-    requestPayment?<T>(params: WeApp.RequestPaymentParam): Promise<T>
+    requestPayment?<T>(params: {}): Promise<T>
     /**
      * 获取系统信息同步
      * @returns Promise对象
@@ -207,5 +208,66 @@ interface WepyServiceInterface extends NetworkBaseInterface {
 }
 
 export class WepyService extends NetworkBase implements WepyServiceInterface {
+    static showToast(title: string) {		
+        return uni.showToast({
+            title: title || '成功',
+            icon: 'none'
+        });
+    }
+	static showLoading(title: string) {
+        return uni.showLoading({
+            title: title || '请稍候...',
+            mask: true
+        });
+    }
+	static hideLoading() {
+        return uni.hideLoading();
+    }
+    static showConfirmModal(modal: DialogInterface) {
+        let obj: DialogInterface = modal || DialogModel
+        return new Promise((resolve,reject)=>{
+			uni.showModal({
+			    title: obj.title,
+			    content: obj.content,
+			    confirmText: obj.confirmText || '重试',
+			    confirmColor: obj.confirmColor || '#000000',
+			    cancelColor: '#666',
+				success: resolve,
+				fail: reject
+			})
+		});
+    }
+    static showReqErrorModal() {
+        return new Promise((resolve,reject)=>{
+			uni.showModal({
+			    title: '请求失败',
+			    content: '请检查网络或稍后重试',
+			    showCancel: false,
+			    confirmText: '确定',
+			    confirmColor: '#666',
+				success: resolve,
+				fail: reject				
+			})
+		})
+    }
+    static makePhoneCall(phoneNum: string) {
+        return uni.makePhoneCall({phoneNumber: phoneNum})
+    }
+    static getStorageSync(key:string) {
+        return uni.getStorageSync(key)
+    }
+	
+    static getSystemInfoSync() {
+        return uni.getSystemInfoSync()
+    }
 
+    static getSystemInfo() {
+        return new Promise((resolve,reject)=>{
+			uni.getSystemInfo
+			uni.getSystemInfo({
+				success: resolve,
+				fail: reject
+			})
+		});
+    }	
 }

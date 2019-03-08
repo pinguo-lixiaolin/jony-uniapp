@@ -67,6 +67,7 @@ export class NetworkBase implements NetworkBaseInterface {
                     }
                 },
                 fail: (error: any) => {
+					console.log(JSON.stringify(error));
                     reject && reject(error)
                 }
             })

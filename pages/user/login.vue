@@ -62,6 +62,10 @@
 		Validation,
 		Navigate
 	} from '../../common/utils';
+	import {
+		WepyService
+	} from "../../services/WepyService";
+	
 	export default {
 		data() {
 			return {

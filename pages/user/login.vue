@@ -109,9 +109,12 @@
 					this.passwordInpType = 'text';
 				}
 			})
-			this.$Utils.onRoute.call(this, () => {
+// 			this.$Utils.onRoute.call(this, () => {
+// 				console.log("onRoute");
+// 			});
+		},
+		onRoute(){
 				console.log("onRoute");
-			});
 		},
 		onUnload() {
 			clearInterval(this.codeTimer);

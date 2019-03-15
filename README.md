@@ -1,12 +1,29 @@
-# jony-uniapp
+# Jony-uniapp
 
-## 一拍即传测试APP 哈哈
+## 一拍即传测试 APP
 
-### 运行和参考资料
+### 1.运行
 
-	1.拷贝 跟目录下debug文件夹到unpackage文件夹下
+	1.拷贝 跟目录下debug文件夹.apk文件到unpackage文件夹下 （.apk文件为安卓自定义基座）
 	
 	2.选择项目根目录直接运行在IOS模拟器或链接Android手机运行
+
+### 2.官方文档论坛
+
+[H5+SDK](http://ask.dcloud.net.cn/article/103)
+
+[HTML5+](http://www.html5plus.org/doc/h5p.html)
+
+[HbuiderX](http://www.dcloud.io/hbuilderx.html)
+
+[Uni-App](https://uniapp.dcloud.io)
+
+[文档论坛](http://ask.dcloud.net.cn/docs)
+
+[Android平台第三方插件开发指导](http://ask.dcloud.net.cn/article/66)
+
+
+### 3.参考资料
 
 [leancloud 接入](https://github.com/leancloud/leantodo-weapp)
 

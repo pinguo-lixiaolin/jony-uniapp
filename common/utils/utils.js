@@ -1,19 +1,6 @@
 // const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
 
-export default {
-	// 模拟onRoute
-	onRoute(cb) {
-		var pages = getCurrentPages();		
-		var pageId = pages[pages.length - 1].__route__;
-		var webViewId = pages[pages.length - 1].__wxWebviewId__;
-		console.log("current:"+this.__wxWebviewId__);
-		console.log('page:'+ webViewId);
-// 		if (this.__wxWebviewId__ !== webViewId) {
-// 			this.__route__ = pageId;
-// 			this.__wxWebviewId__ = webViewId;
-// 			cb && cb();
-// 		}
-	},
+export default {	
 	showConfirmModal(params) {
 		let {
 			title,

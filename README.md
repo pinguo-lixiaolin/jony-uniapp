@@ -2,7 +2,7 @@
 
 ## 一拍即传测试 APP
 
-### 1.运行
+### 1.运行自定义基座
 
 	1.下载HbuiderX导入项目目录
 	
@@ -27,7 +27,7 @@
 [Android平台第三方插件开发指导](http://ask.dcloud.net.cn/article/66)
 
 
-### 3.参考资料
+### 3.参考文档
 
 [leancloud 接入](https://github.com/leancloud/leantodo-weapp)
 

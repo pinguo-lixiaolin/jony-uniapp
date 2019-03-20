@@ -61,7 +61,7 @@
 	import {
 		Validation,
 		Navigate
-	} from '../../common/utils';
+	} from '../../common/utils/utils.js';
 	import {
 		WepyService
 	} from "../../services/WepyService";
@@ -122,9 +122,9 @@
 		},
 		methods: {
 			...mapMutations(['login']),
-			onRoute(){
+			onRoute() {
 				console.log("login onRoute");
-			},			
+			},
 			changeLoginType(type) {
 				this.loginType = type;
 			},

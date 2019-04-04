@@ -62,6 +62,7 @@
         "appid" : "wx037cf4991c33a506",
         "setting" : {
             "urlCheck" : false
-        }
+        },
+		"usingComponents": true
     }
 }

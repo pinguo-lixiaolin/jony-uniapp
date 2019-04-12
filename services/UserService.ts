@@ -174,4 +174,14 @@ export default class UserService extends NetworkBase implements UserServiceInter
             NetworkConfig.RequestMethod.POST
         );
     }
+    login(code: string, mobile: string): Promise<any> {
+        return this.request(
+            InterfaceConfig.UserInterfaceConfig.login,
+            {
+                code: code,
+                mobile: mobile
+            },
+            NetworkConfig.RequestMethod.POST
+        );
+    }	
 }

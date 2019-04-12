@@ -263,11 +263,22 @@ export class WepyService extends NetworkBase implements WepyServiceInterface {
 
     static getSystemInfo() {
         return new Promise((resolve,reject)=>{
-			uni.getSystemInfo
 			uni.getSystemInfo({
 				success: resolve,
 				fail: reject
 			})
 		});
-    }	
+    }
+	
+	static setStorageSync(setObj: {key: string, data: any}) {
+		return new Promise((resolve,reject)=>{
+			try{				
+				uni.setStorageSync(setObj.key, setObj.data)
+				resolve();
+			}catch(e){
+				reject(e);
+			}
+		})
+    }
+	
 }

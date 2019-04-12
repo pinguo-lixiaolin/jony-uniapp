@@ -61,7 +61,7 @@
 	import {
 		Validation,
 		Navigate
-	} from '../../common/utils/utils.js';
+	} from '../../common/utils';
 	import {
 		WepyService
 	} from "../../services/WepyService";
@@ -209,8 +209,64 @@
 			handleChangeCode(e) {
 				this.code = e.target.value;
 			},
-			handleLogin() {
+			codeLogin() {
 
+				WepyService.showLoading("登录中...");
+
+				this.$userService.login(this.code, this.mobile)
+					.then((res) => {
+						WepyService.hideLoading()						
+
+						let keyStr = ''
+						if (this.$userService.isDev()) {
+							keyStr = 'dev_'
+						}
+
+						// 是否设置过密码
+						WepyService.setStorageSync({
+							key: keyStr + "hasPsw",
+							data: res.data.data.isPwd ? '1' : '0'
+						})
+
+						WepyService.setStorageSync({
+							key: keyStr + 'selfToken',
+							data: res.data.data.token
+						})
+						WepyService.setStorageSync({
+							key: keyStr + 'mobile',
+							data: this.mobile
+						})
+						WepyService.setStorageSync({
+							key: keyStr + "loginType",
+							data: '1'
+						})
+						// console.log(JSON.stringify(res.data))
+						uni.switchTab({
+							url: "/pages/tabbar/index/index"
+						})
+					})
+					.catch((error) => {
+						WepyService.hideLoading();
+						if (error.data && error.data.message) {
+							WepyService.showToast(error.data.message)
+						} else {
+							WepyService.showToast('登录失败,请稍后重试')
+						}
+					});
+			},
+			handleLogin() {
+				this.mobile = Validation.beMobile(this.mobile)
+				if (!Validation.checkPhone(this.mobile)) {
+					WepyService.showToast('请输入正确的手机号');
+					return;
+				}
+				if (this.loginType) { //验证码登陆
+					if (!this.code) {
+						WepyService.showToast('请输入验证码')
+						return
+					}
+					this.codeLogin()
+				}
 			},
 			handleGoToApply() {
 

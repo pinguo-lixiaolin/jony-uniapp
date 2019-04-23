@@ -51,7 +51,7 @@
 				"pagePath": "pages/tabbar/create/create",
 				"iconPath": "static/img/tabbar/add_1.png",
 				"selectedIconPath": "static/img/tabbar/add_1.png",
-				"text": "创建"
+				"text": "创建相册"
 			},
 			//#endif
 			//#ifndef MP-WEIXIN

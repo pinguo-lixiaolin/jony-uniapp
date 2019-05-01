@@ -1,4 +1,4 @@
-// const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
+const dcRichAlert = uni.requireNativePlugin('DCloud-RichAlert');
 
 export default {	
 	showConfirmModal(params) {
@@ -14,19 +14,19 @@ export default {
 
 		confirmColor = confirmColor || "#EC3955"
 
-		wx.showModal({
-			title,
-			content,
-			confirmText,
-			confirmColor,
-			success(res) {
-				if (res.confirm) {
-					onOk && onOk();
-				}
-			}
-		})
+		// wx.showModal({
+		// 	title,
+		// 	content,
+		// 	confirmText,
+		// 	confirmColor,
+		// 	success(res) {
+		// 		if (res.confirm) {
+		// 			onOk && onOk();
+		// 		}
+		// 	}
+		// })
 
-		/*dcRichAlert.show({
+		dcRichAlert.show({
 				position: 'center',
 				title,
 				titleColor,
@@ -50,7 +50,7 @@ export default {
 						break;
 				}
 			}
-		); */
+		);
 
 	}
 }

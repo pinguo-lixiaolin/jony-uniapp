@@ -254,7 +254,7 @@ export class WepyService extends NetworkBase implements WepyServiceInterface {
         return uni.makePhoneCall({phoneNumber: phoneNum})
     }
     static getStorageSync(key:string) {
-        return uni.getStorageSync(key)
+        return (uni as any).getStorageSync(key)
     }
 	
     static getSystemInfoSync() {
@@ -273,7 +273,7 @@ export class WepyService extends NetworkBase implements WepyServiceInterface {
 	static setStorageSync(setObj: {key: string, data: any}) {
 		return new Promise((resolve,reject)=>{
 			try{				
-				uni.setStorageSync(setObj.key, setObj.data)
+				(uni as any).setStorageSync(setObj.key, setObj.data)
 				resolve();
 			}catch(e){
 				reject(e);

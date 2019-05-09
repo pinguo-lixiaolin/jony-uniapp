@@ -270,6 +270,19 @@ export class WepyService extends NetworkBase implements WepyServiceInterface {
 		});
     }
 	
+	static setStorage(obj: {key:string,data:any}) {
+		return new Promise((resolve,reject)=>{
+			try {
+				uni.setStorage({
+					...obj,
+					success: resolve
+				});				
+			}catch(e) {
+				reject(e);
+			}
+		})
+	}
+	
 	static setStorageSync(setObj: {key: string, data: any}) {
 		return new Promise((resolve,reject)=>{
 			try{				
@@ -280,5 +293,18 @@ export class WepyService extends NetworkBase implements WepyServiceInterface {
 			}
 		})
     }
+	
+	static getStorage(getObj: {key: string}) {
+		return new Promise((resolve,reject)=>{
+			try{				
+				(uni as any).getStorage({
+					...getObj,
+					success: resolve
+				})
+			}catch(e){
+				reject(e);
+			}
+		})
+    }	
 	
 }

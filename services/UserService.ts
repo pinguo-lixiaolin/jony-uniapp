@@ -184,4 +184,14 @@ export default class UserService extends NetworkBase implements UserServiceInter
             NetworkConfig.RequestMethod.POST
         );
     }	
+    checkPsw(mobile: string, psw: string): Promise<any> {
+        return this.request(
+            InterfaceConfig.UserInterfaceConfig.checkPsw,
+            {
+                mobile: mobile,
+                pwd: psw
+            },
+            NetworkConfig.RequestMethod.POST
+        );
+    }
 }

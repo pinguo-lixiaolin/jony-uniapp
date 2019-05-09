@@ -4,8 +4,8 @@
 			<image class="welcome-pic" src="/static/images/login/welcome.png" mode="aspectFit" />
 			<text class="subtitle">活 动 现 场 摄 影，就 用 ⌈ 一 拍 即 传 ⌋</text>
 			<view class="login-choose-outview">
-				<text :class="{ 'pink-bottom': loginType }" @tap.stop="changeLoginType(1)">验证码登录</text>
-				<text :class="{ 'pink-bottom': !loginType }" @tap.stop="changeLoginType(0)">密码登录</text>
+				<text :class="{ 'pink-bottom': loginType }" @click.stop="changeLoginType(1)">验证码登录</text>
+				<text :class="{ 'pink-bottom': !loginType }" @click.stop="changeLoginType(0)">密码登录</text>
 			</view>
 			<view class="input-wrapper" :hidden="!loginType">
 				<!-- 电话 -->
@@ -210,12 +210,10 @@
 				this.code = e.target.value;
 			},
 			codeLogin() {
-
 				WepyService.showLoading("登录中...");
-
 				this.$userService.login(this.code, this.mobile)
 					.then((res) => {
-						WepyService.hideLoading()						
+						WepyService.hideLoading()
 
 						let keyStr = ''
 						if (this.$userService.isDev()) {
@@ -254,6 +252,70 @@
 						}
 					});
 			},
+			pwdLogin() {
+				WepyService.showLoading("登录中...");
+				this.$userService.checkPsw(this.mobile, this.psw).then((res) => {
+					let keyStr = ''
+					if (this.$userService.isDev()) {
+						keyStr = 'dev_'
+					}
+					WepyService.setStorageSync({
+						key: keyStr + "loginType",
+						data: '0'
+					})
+					WepyService.setStorageSync({
+						key: keyStr + 'selfToken',
+						data: res.data.data.token
+					})
+					WepyService.setStorageSync({
+						key: keyStr + 'mobile',
+						data: this.mobile
+					})
+					WepyService.setStorage({
+						key: keyStr + 'token',
+						data: res.data.data.token
+					}).then(() => {
+						WepyService.hideLoading()
+						if (this.rememberPsw) {
+							WepyService.setStorage({
+								key: keyStr + 'psw',
+								data: this.psw
+							})
+						}
+						WepyService.setStorage({
+							key: keyStr + 'rememberPsw',
+							data: this.rememberPsw ? '1' : '0'
+						})
+						uni.reLaunch({
+							url: '/pages/tabbar/index/index'
+						});
+					})
+				}).catch((err) => {
+					WepyService.hideLoading()
+					if (err.data && err.data.message) {
+						if (err.data.status == 10073) {
+							WepyService.showConfirmModal({
+								title: '',
+								content: '您还没有设置密码，请先设置密码',
+								confirmText: '去设置'
+							}).then((res) => {
+								if (res.confirm) {
+									Navigate.goTo({
+										url: '/pages/user/identCode',
+										params: {
+											title: '设置密码'
+										}
+									})
+								}
+							})
+						} else {
+							WepyService.showToast(err.data.message)
+						}
+					} else {
+						WepyService.showToast('登录失败,请稍后重试')
+					}
+				})
+			},
 			handleLogin() {
 				this.mobile = Validation.beMobile(this.mobile)
 				if (!Validation.checkPhone(this.mobile)) {
@@ -266,10 +328,18 @@
 						return
 					}
 					this.codeLogin()
+				} else { // 密码登录
+					if (this.psw.length < 1) {
+						WepyService.showToast('请输入密码')
+						return false;
+					}
+					this.pwdLogin();
 				}
 			},
 			handleGoToApply() {
-
+				uni.navigateTo({
+					url: "/pages/user/register"
+				})
 			}
 		}
 	};
@@ -282,14 +352,18 @@
 		height: 100%;
 	}
 
+	.hover-btn {
+		opacity: .8;
+	}
+
 	.circle {
 		position: absolute;
-		width: 60rpx;
-		height: 60rpx;
+		width: 60upx;
+		height: 60upx;
 		border-radius: 50%;
 		overflow: hidden;
 		background: #56597a;
-		left: 32rpx;
+		left: 32upx;
 	}
 
 	.container {
@@ -309,36 +383,36 @@
 			width: 100%;
 
 			.welcome-pic {
-				width: 486rpx;
-				height: 59.7rpx;
+				width: 486upx;
+				height: 59.7upx;
 			}
 
 			.title {
-				font-size: 24rpx;
+				font-size: 24upx;
 				text-align: center;
 				font-weight: bold;
 			}
 
 			.subtitle {
-				font-size: 28rpx;
+				font-size: 28upx;
 				text-align: center;
-				margin-top: 24rpx;
+				margin-top: 24upx;
 			}
 
 			.login-choose-outview {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				width: 420rpx;
-				font-size: 30rpx;
-				margin-top: 82rpx;
+				width: 420upx;
+				font-size: 30upx;
+				margin-top: 82upx;
 				position: relative;
 			}
 
 			.input-wrapper {
-				margin-top: 106rpx;
-				width: 486rpx;
-				height: 300rpx;
+				margin-top: 106upx;
+				width: 486upx;
+				height: 300upx;
 			}
 
 			.item-wrapper {
@@ -346,7 +420,7 @@
 				flex-direction: row;
 				justify-content: flex-start;
 				align-items: center;
-				margin-bottom: 40rpx;
+				margin-bottom: 40upx;
 				// border-bottom: 1px solid #ccc;
 				position: relative;
 			}
@@ -358,17 +432,17 @@
 				bottom: 0;
 				display: block;
 				margin: auto;
-				width: 46rpx;
-				height: 46rpx;
+				width: 46upx;
+				height: 46upx;
 			}
 
 			.input-value {
-				padding-left: 68rpx;
+				padding-left: 68upx;
 				width: 100%;
-				height: 82rpx;
-				font-size: 32rpx;
+				height: 82upx;
+				font-size: 32upx;
 				background: #fff;
-				line-height: 80rpx;
+				line-height: 80upx;
 				border-bottom: 1px solid #ccc;
 				background: rgba(0, 0, 0, 0);
 			}
@@ -387,80 +461,80 @@
 			}
 
 			.more-choose-outview {
-				width: 486rpx;
+				width: 486upx;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				margin-top: 22rpx;
+				margin-top: 22upx;
 			}
 
 			.login-re-psw-icon {
-				width: 31.25rpx;
-				height: 31.25rpx;
+				width: 31.25upx;
+				height: 31.25upx;
 			}
 
 			.psw-login-outview {
-				margin-top: 106rpx;
-				width: 486rpx;
-				height: 300rpx;
+				margin-top: 106upx;
+				width: 486upx;
+				height: 300upx;
 			}
 
 			.remenber-psw {
 				display: flex;
 				align-items: center;
-				font-size: 24rpx;
+				font-size: 24upx;
 				color: #333;
 			}
 
 			.forget-psw {
 				color: #444972;
-				font-size: 24rpx;
+				font-size: 24upx;
 			}
 
 			.login-phone-icon {
-				width: 44rpx;
-				height: 44rpx;
+				width: 44upx;
+				height: 44upx;
 			}
 
 			.login-captch-icon {
-				width: 44rpx;
-				height: 44rpx;
+				width: 44upx;
+				height: 40upx;
 			}
 
 			.code-btn {
-				margin-top: 26rpx;
-				margin-left: 20rpx;
-				width: 280rpx;
-				height: 55rpx;
+				margin-top: 26upx;
+				margin-left: 20upx;
+				width: 280upx;
+				height: 55upx;
 				color: #333;
 				text-align: center;
-				font-size: 30rpx;
-				line-height: 55rpx;
-				border-radius: 6rpx;
+				font-size: 30upx;
+				line-height: 55upx;
+				border-radius: 6upx;
 				border: 1px solid #afafaf;
 			}
 
 			.code-tips {
-				width: 630rpx;
+				width: 630upx;
 				color: #444972;
-				font-size: 24rpx;
-				margin-top: 29rpx;
+				font-size: 24upx;
+				margin-top: 29upx;
 				text-align: left;
 				// text-decoration: underline;
 			}
 
 			.login-btn {
 				margin: auto;
-				margin-top: 30rpx;
+				margin-top: 30upx;
 				// left: 0;
 				// right: 0;
-				// bottom: 302rpx;
-				width: 486rpx;
-				height: 76rpx;
-				border-radius: 50rpx;
+				// bottom: 302upx;
+				width: 486upx;
+				height: 76upx;
+				border-radius: 50upx;
 				color: #fff;
-				font-size: 30rpx;
-				line-height: 76rpx;
+				font-size: 30upx;
+				line-height: 76upx;
 				text-align: center;
 				background: -moz-linear-gradient(left top, #c92b75 0%, #ec3955 100%);
 				background: -webkit-linear-gradient(left top, #c92b75 0%, #ec3955 100%);
@@ -473,16 +547,16 @@
 				background: rgba(255, 255, 255, 0.2);
 				border: 1px solid #999;
 				color: #333;
-				margin-top: 30rpx;
+				margin-top: 30upx;
 				// margin: auto;
-				// bottom: 190rpx;
+				// bottom: 190upx;
 				// left: 0;
 				// right: 0;
 			}
 
 			.pink-bottom {
 				border-bottom: 4px solid #f91e62;
-				font-size: 40rpx;
+				font-size: 40upx;
 				font-weight: bolder;
 			}
 
@@ -491,7 +565,7 @@
 				height: 4px;
 				transition: 0.2s;
 				position: absolute;
-				bottom: -5rpx;
+				bottom: -5upx;
 			}
 
 			.login-hover-btn {

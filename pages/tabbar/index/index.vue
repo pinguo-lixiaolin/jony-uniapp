@@ -1,10 +1,12 @@
 <template>
 	<view>
+		<!-- #ifdef APP-PLUS -->
 		<button @click="pluginShow">PluginTestFunction</button>
 		<button @click="pluginShowArrayArgu">PluginTestFunctionArrayArgu</button>
 		<button @click="pluginGetString">PluginTestFunctionSync</button>
 		<button @click="pluginGetStringArrayArgu">PluginTestFunctionSyncArrayArgu</button>
 		<button @tap="handleOpenPage" type="primary">打开原生页面</button>
+		<!-- #endif -->
 	</view>
 </template>
 <style>
@@ -15,13 +17,20 @@
 </style>
 <script>
 	// 扩展的 js 文件的位置：common/plugins.js
+	// #ifdef APP-PLUS
 	var plugins = require('../../../common/plugins.js');
+	// #endif
 	export default {
 		data() {
 			return {
+				// #ifdef APP-PLUS
 				plugins: plugins
+				// #endif
 			};
 		},
+		onShow() {
+			uni.setStorageSync('createFrom', 'index');
+		},		
 		methods: {
 			handleOpenPage() {
 				var Intent = plus.android.importClass("android.content.Intent");

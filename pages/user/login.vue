@@ -179,7 +179,7 @@
 							}).then((res) => {
 								if (res.confirm) {
 									Navigate.goTo({
-										url: '/pages/login/identCode/IdentCode',
+										url: '/pages/user/identCode'
 									})
 								}
 							})
@@ -239,9 +239,9 @@
 							data: '1'
 						})
 						// console.log(JSON.stringify(res.data))
-						uni.switchTab({
-							url: "/pages/tabbar/index/index"
-						})
+						uni.reLaunch({
+							url: '/pages/tabbar/index/index'
+						});
 					})
 					.catch((error) => {
 						WepyService.hideLoading();

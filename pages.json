@@ -6,38 +6,33 @@
 			"style": {
 				// "enablePullDownRefresh": true //开启下拉刷新
 			}
-		},
-		{
+		}, {
 			"path": "pages/tabbar/create/create"
-		},
-		{
+		}, {
 			"path": "pages/tabbar/me/me"
-		},
-		{
+		}, {
 			"path": "pages/create/create",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		},
-		{
+		}, {
 			"path": "pages/user/login",
 			"style": {
 				"navigationBarTitleText": "登录",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#fff"
 			}
-		}
-	    ,{
-            "path" : "pages/user/identCode",
-            "style" : {}
-        }	    ,{
-            "path" : "pages/user/register",
-            "style" : {
-				"navigationBarTitleText":"注册"
+		}, {
+			"path": "pages/user/identCode",
+			"style": {}
+		}, {
+			"path": "pages/user/register",
+			"style": {
+				"navigationBarTitleText": "注册"
 			}
-        }
-		
-    ],
+		}
+
+	],
 	"globalStyle": {
 		"navigationStyle": "default",
 		"navigationBarTextStyle": "black",

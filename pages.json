@@ -5,9 +5,22 @@
 			"path": "pages/tabbar/index/index",
 			"style": {
 				// "enablePullDownRefresh": true //开启下拉刷新
+				"navigationBarTextStyle":"white",
+				"app-plus": {
+					"titleNView": {
+						"titleSize":"20",
+						"titleText":"",
+						"backgroundColor":"#444972"
+					}
+				}
 			}
 		}, {
-			"path": "pages/tabbar/create/create"
+			"path": "pages/tabbar/create/create",
+			"style": {
+				"app-plus": {
+					"titleNView": false
+				}
+			}
 		}, {
 			"path": "pages/tabbar/me/me"
 		}, {

@@ -4,25 +4,67 @@
 		{
 			"path": "pages/tabbar/index/index",
 			"style": {
-				// "enablePullDownRefresh": true //开启下拉刷新
-				"navigationBarTextStyle":"white",
+				// "enablePullDownRefresh": true, //开启下拉刷新
+				"backgroundColor": "#444972",
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "一拍即传",
+				"navigationBarBackgroundColor": "#444972",
 				"app-plus": {
 					"titleNView": {
-						"titleSize":"20",
-						"titleText":"",
-						"backgroundColor":"#444972"
+						"titleText": "",
+						"backgroundColor": "#444972",
+						"titleColor": "#FFFFFF",
+						// "type": "transparent",
+						"buttons": [{
+							"float": "left",
+							"text": "一拍即传",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "18px",
+							"colorPressed": "#ffffff",
+							"width": "100px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue63b",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue836",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}]
 					}
 				}
 			}
 		}, {
 			"path": "pages/tabbar/create/create",
 			"style": {
+				"navigationBarTextStyle": "white",
 				"app-plus": {
-					"titleNView": false
+					"titleNView": {
+						"titleText": "拍友圈",
+						"backgroundColor": "#444972",
+						"titleColor": "#FFFFFF",
+						"titleSize": "18px"
+					}
 				}
 			}
 		}, {
-			"path": "pages/tabbar/me/me"
+			"path": "pages/tabbar/me/me",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"titleText": "我的",
+						"backgroundColor": "#444972",
+						"titleColor": "#FFFFFF",
+						"titleSize": "18px"
+					}
+				}
+			}
 		}, {
 			"path": "pages/create/create",
 			"style": {
@@ -45,6 +87,20 @@
 			}
 		}
 
+		, {
+			"path": "pages/tabbar/buy/buy",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"titleText": "购买",
+						"backgroundColor": "#444972",
+						"titleColor": "#FFFFFF",
+						"titleSize": "18px"
+					}
+				}
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationStyle": "default",
@@ -67,18 +123,25 @@
 			//#ifdef MP-WEIXIN
 			{
 				"pagePath": "pages/tabbar/create/create",
-				"iconPath": "static/img/tabbar/add_1.png",
-				"selectedIconPath": "static/img/tabbar/add_1.png",
-				"text": "创建相册"
+				"iconPath": "static/img/tabbar/camera_disable.png",
+				"selectedIconPath": "static/img/tabbar/camera.png",
+				"text": "拍友圈"
 			},
 			//#endif
 			//#ifndef MP-WEIXIN
 			{
 				"pagePath": "pages/tabbar/create/create",
-				"iconPath": "static/img/tabbar/add_1.png",
-				"selectedIconPath": "static/img/tabbar/add_1.png"
+				"iconPath": "static/img/tabbar/camera_disable.png",
+				"selectedIconPath": "static/img/tabbar/camera.png",
+				"text": "拍友圈"
 			},
 			//#endif
+			{
+				"pagePath": "pages/tabbar/buy/buy",
+				"iconPath": "static/images/home/buy.png",
+				"selectedIconPath": "static/images/home/buy_choosed.png",
+				"text": "购买"
+			},
 			{
 				"pagePath": "pages/tabbar/me/me",
 				"iconPath": "static/images/home/person_center.png",
@@ -86,12 +149,13 @@
 				"text": "我的"
 			}
 		]
-	},
+	}
+	/*
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式（list 的索引项）
 		"list": [{
 			"name": "login", //模式名称
 			"path": "pages/user/login" //启动页面，必选
 		}]
-	}
+	}*/
 }

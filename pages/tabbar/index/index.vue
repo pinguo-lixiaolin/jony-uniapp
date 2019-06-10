@@ -1,66 +1,69 @@
 <template>
-	<view class="content">
+	<view class="home">
+		<banners />
+		<view class="tab-nav">
+			<uni-segmented-control :current="current" :values="items" :style-type="styleType" :active-color="activeColor"
+			 @clickItem="onClickItem" />
+		</view>
+		<view class="content">
+			<view class="content-box" v-show="current === 0">
+			</view>
+			<view class="content-box" v-show="current === 1">
 
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
+	import banners from "./banners.vue";
+	import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue'
 	export default {
 		data() {
 			return {
-				title: '一拍即传'
-			};
+				items: [
+					'直播相册',
+					'相册合辑'
+				],
+				current: 0,
+				colorIndex: 0,
+				activeColor: '#444972',
+				styleType: 'text'
+			}
 		},
-		onLoad() {
-
-		},
-		onShow() {
-			uni.setStorageSync('createFrom', 'index');
+		components: {
+			banners,
+			uniSegmentedControl
 		},
 		methods: {
-			showArgs() {
-				plus.nativeUI.alert(JSON.stringify(plus.runtime.arguments));
-			},
-			showToast() {
-				var user = new this.$AV.User();
-				user.setUsername('lixiaolin222' + Date.now());
-				user.setPassword('123456');
-				user.setEmail('lixiaolin_23@foxmail.com');
-				console.log(JSON.stringify(user.signUp()));
-				user.signUp().then(
-					function(loginedUser) {
-						// 注册成功，跳转到商品 list 页面
-						console.log(loginedUser);
-						wx.showToast({
-							title: '注册成功',
-							duration: 3000
-						});
-					},
-					function(error) {
-						console.log(JSON.stringify(error));
-						plus.nativeUI.toast(
-							(error.rawMessage && error.rawMessage.replace('。', '')) || '访问出错'
-						);
-					}
-				);
+			onClickItem(index) {
+				if (this.current !== index) {
+					this.current = index
+				}
 			}
 		}
-	};
+	}
 </script>
 
-<style>
+<style lang="less">
 	.content {
-		text-align: center;
-	}
+		display: flex;
+		width: 100%;
+		height: calc(100vh - 90upx - var(--status-bar-height));
+		background: #ffffff;
+		box-sizing: border-box;
+		position: relative;
 
-	.logo {
-		height: 200upx;
-		width: 200upx;
-		margin-top: 200upx;
-	}
-
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
+		&-box {
+			height: 100%;
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			width: 100%;
+		}
 	}
 </style>

@@ -5,16 +5,14 @@
 			"path": "pages/tabbar/index/index",
 			"style": {
 				// "enablePullDownRefresh": true, //开启下拉刷新
-				"backgroundColor": "#444972",
 				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "一拍即传",
-				"navigationBarBackgroundColor": "#444972",
 				"app-plus": {
+					"bounce": "vertical",
 					"titleNView": {
-						"titleText": "",
 						"backgroundColor": "#444972",
 						"titleColor": "#FFFFFF",
-						// "type": "transparent",
+						"titleText": "",
+						"type": "transparent",
 						"buttons": [{
 							"float": "left",
 							"text": "一拍即传",
@@ -45,10 +43,31 @@
 				"navigationBarTextStyle": "white",
 				"app-plus": {
 					"titleNView": {
-						"titleText": "拍友圈",
+						"titleText": "",
 						"backgroundColor": "#444972",
 						"titleColor": "#FFFFFF",
-						"titleSize": "18px"
+						"titleSize": "18px",
+						"buttons": [{
+							"float": "left",
+							"text": "拍友圈",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "18px",
+							"colorPressed": "#ffffff",
+							"width": "83px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue7e5",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue836",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}]
 					}
 				}
 			}
@@ -93,10 +112,31 @@
 				"navigationBarTextStyle": "white",
 				"app-plus": {
 					"titleNView": {
-						"titleText": "购买",
+						"titleText": "",
 						"backgroundColor": "#444972",
 						"titleColor": "#FFFFFF",
-						"titleSize": "18px"
+						"titleSize": "18px",
+						"buttons": [{
+							"float": "left",
+							"text": "购买",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "18px",
+							"colorPressed": "#ffffff",
+							"width": "65px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue63b",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}, {
+							"text": "\ue836",
+							"fontSrc": "/static/iconfont.ttf",
+							"fontSize": "20px",
+							"width": "46px",
+							"background": "rgba(0,0,0,0)"
+						}]
 					}
 				}
 			}

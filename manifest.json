@@ -9,8 +9,8 @@
     "app-plus" : {
         "usingComponents" : true,
         "splashscreen" : {
-            "alwaysShowBeforeRender" : true,
-            "waiting" : true,
+            "alwaysShowBeforeRender" : false,
+            "waiting" : false,
             "autoclose" : true,
             "delay" : 0
         },
@@ -82,7 +82,8 @@
         "appid" : "wx037cf4991c33a506",
         "setting" : {
             "urlCheck" : false,
-            "minified" : true
+            "minified" : true,
+            "es6" : true
         },
         "usingComponents" : true
     },

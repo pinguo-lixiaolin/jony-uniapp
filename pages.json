@@ -8,33 +8,34 @@
 				"navigationBarTextStyle": "white",
 				"app-plus": {
 					"bounce": "vertical",
-					"titleNView": {
-						"backgroundColor": "#444972",
-						"titleColor": "#FFFFFF",
-						"titleText": "",
-						"type": "transparent",
-						"buttons": [{
-							"float": "left",
-							"text": "一拍即传",
-							"fontSrc": "/static/iconfont.ttf",
-							"fontSize": "18px",
-							"colorPressed": "#ffffff",
-							"width": "100px",
-							"background": "rgba(0,0,0,0)"
-						}, {
-							"text": "\ue63b",
-							"fontSrc": "/static/iconfont.ttf",
-							"fontSize": "20px",
-							"width": "46px",
-							"background": "rgba(0,0,0,0)"
-						}, {
-							"text": "\ue836",
-							"fontSrc": "/static/iconfont.ttf",
-							"fontSize": "20px",
-							"width": "46px",
-							"background": "rgba(0,0,0,0)"
-						}]
-					}
+					"titleNView": ""
+					// "titleNView": {
+					// 	"backgroundColor": "#444972",
+					// 	"titleColor": "#FFFFFF",
+					// 	"titleText": "",
+					// 	// "type": "transparent",
+					// 	"buttons": [{
+					// 		"float": "left",
+					// 		"text": "一拍即传",
+					// 		"fontSrc": "/static/iconfont.ttf",
+					// 		"fontSize": "18px",
+					// 		"colorPressed": "#ffffff",
+					// 		"width": "100px",
+					// 		"background": "rgba(0,0,0,0)"
+					// 	}, {
+					// 		"text": "\ue63b",
+					// 		"fontSrc": "/static/iconfont.ttf",
+					// 		"fontSize": "20px",
+					// 		"width": "46px",
+					// 		"background": "rgba(0,0,0,0)"
+					// 	}, {
+					// 		"text": "\ue836",
+					// 		"fontSrc": "/static/iconfont.ttf",
+					// 		"fontSize": "20px",
+					// 		"width": "46px",
+					// 		"background": "rgba(0,0,0,0)"
+					// 	}]
+					// }
 				}
 			}
 		}, {

@@ -7,12 +7,8 @@
 				 @clickItem="onClickItem" />
 			</view>
 			<view class="content">
-				<view class="content-box" v-show="current === 0">
-					3
-				</view>
-				<view class="content-box" v-show="current === 1">
-					2
-				</view>
+				<view class="content-box" v-show="current === 0"></view>
+				<view class="content-box" v-show="current === 1"></view>
 			</view>
 		</view>
 	</view>
@@ -21,7 +17,11 @@
 <script>
 	import banners from "./banners.vue";
 	import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue'
-	export default {
+	import {
+		Vue,
+		Component
+	} from 'vue-property-decorator';
+	@Component({
 		data() {
 			return {
 				items: [
@@ -38,13 +38,17 @@
 			banners,
 			uniSegmentedControl
 		},
-		methods: {
-			onClickItem(index) {
-				if (this.current !== index) {
-					this.current = index
-				}
+	})
+	export default class App extends Vue {
+		onRoute() {
+			console.log("onRoute")
+		}
+		onClickItem(index) {
+			if (this.current !== index) {
+				this.current = index
 			}
 		}
+
 	}
 </script>
 
@@ -57,7 +61,7 @@
 		.tab-nav {
 			left: 0;
 			right: 0;
-			position: fixed;
+			// position: fixed;
 			background-color: rgba(255, 255, 255, .9);
 			top: calc(90upx + var(--status-bar-height));
 		}

@@ -23,7 +23,7 @@ export default {
 				onOk() {
 					console.log('退出');
 					uni.redirectTo({
-						url: '/pages/user/login'
+						url: '/pages/user/login/login'
 					});
 				}
 			});

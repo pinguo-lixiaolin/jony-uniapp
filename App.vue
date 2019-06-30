@@ -2,10 +2,6 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch');
-			this.$AV.init({
-				appId: 'uaN8nyxBz8xtLA6JSpvTfC9i-gzGzoHsz',
-				appKey: 'BqoFgiHabN0lhlvwJyFmBnjP'
-			});
 			this.$Gio('init', '87a8f5f5eb47acfc', 'wx037cf4991c33a506', {
 				version: '2.3.0',
 				getLocation: true,

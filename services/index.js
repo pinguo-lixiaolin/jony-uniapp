@@ -1,12 +1,13 @@
 import Vue from "vue";
 
-import AV from "leancloud-storage/dist/av-weapp-min.js";
-import Utils from "../common/utils/utils.js";
-import Gio from "../common/utils/gio-minp.js";
+import Utils from "@/common/utils/utils";
+import Gio from "@/common/utils/gio-minp";
 
+
+import api from '@/common/vmeitime-http';
 import UserService from "./UserService";
 
-Vue.prototype.$AV = AV;
+Vue.prototype.$api = api
 Vue.prototype.$Utils = Utils;
 Vue.prototype.$Gio = Gio;
 
